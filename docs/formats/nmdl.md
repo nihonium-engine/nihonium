@@ -4,7 +4,7 @@
 
 ## Introduction
 
-The NMDL (*N*ihonium *M*o*d*e*l*) format is a file format used for storing 3D models for the Nihonium Game Engine.  
+The NMDL (**N**ihonium **M**o**d**e**l**) format is a file format used for storing 3D models for the Nihonium Game Engine.  
 NMDL files should have the '.nmdl' file extension.
 
 **Note:** All multi-byte values are in little endian format.
