@@ -1,0 +1,12 @@
+# Output directory
+bin/
+obj/
+
+# Premake files
+Makefile
+*.make
+
+# Visual Studio files
+*.sln
+*.vcxproj
+*.vcxproj.filters
