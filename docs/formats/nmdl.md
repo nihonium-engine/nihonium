@@ -44,7 +44,7 @@ All faces are triangles.
 |AO UVs                 |Number of AO UVs * 2 * 4 bytes       |A list of AO UVs in floating-point format, ordered as XY.       |
 |Faces                  |Number of Faces * 7 * 4 * 3 bytes    |A list of all faces in the mesh (See Face Index Order below).   |
 
-# Face Index Order
+## Face Index Order
 
 The 21 sets of indices in each face are in the following order. Each is represented as a 4 byte integer.
 
