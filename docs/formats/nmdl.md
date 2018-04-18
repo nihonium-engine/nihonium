@@ -23,10 +23,11 @@ All faces are triangles.
 |Meshes          |Variable|A series of meshes (see Mesh Format below).                                              |
 
 ## Mesh Format
+
 |Field                  |Size                                 |Description                                                     |
 |-----------------------|-------------------------------------|----------------------------------------------------------------|
 |Mesh Name Length       |4 bytes                              |The length of the name of the mesh, in bytes.                   |
-|Number of Vertices     |4 bytes                              |The number of vertices in the mesh.                             |
+|Number of Positions    |4 bytes                              |The number of positions in the mesh.                            |
 |Number of Normals      |4 bytes                              |The number of normals in the mesh.                              |
 |Number of Albedo UVs   |4 bytes                              |The number of albedo UVs in the mesh.                           |
 |Number of Normal UVs   |4 bytes                              |The number of normal UVs in the mesh.                           |
@@ -35,14 +36,14 @@ All faces are triangles.
 |Number of AO UVs       |4 bytes                              |The number of AO UVs in the mesh.                               |
 |Number of Faces        |4 bytes                              |The number of faces in the mesh.                                |
 |Mesh Name              |Variable                             |The name of the mesh.                                           |
-|Vertices               |Number of Vertices * 3 * 4 bytes     |A list of vertices in floating-point format, ordered as XYZ.    |
+|Positions              |Number of Positions * 3 * 4 bytes    |A list of positions in floating-point format, ordered as XYZ.   |
 |Normals                |Number of Normals * 3 * 4 bytes      |A list of normals in floating-point format, ordered as XYZ.     |
 |Albedo UVs             |Number of Albedo UVs * 2 * 4 bytes   |A list of albedo UVs in floating-point format, ordered as XY.   |
 |Normal UVs             |Number of Normal UVs * 2 * 4 bytes   |A list of normal UVs in floating-point format, ordered as XY.   |
 |Metallic UVs           |Number of Metallic UVs * 2 * 4 bytes |A list of metallic UVs in floating-point format, ordered as XY. |
 |Roughness UVs          |Number of Roughness UVs * 2 * 4 bytes|A list of roughness UVs in floating-point format, ordered as XY.|
 |AO UVs                 |Number of AO UVs * 2 * 4 bytes       |A list of AO UVs in floating-point format, ordered as XY.       |
-|Faces                  |Number of Faces * 7 * 4 * 3 bytes    |A list of all faces in the mesh (See Face Index Order below).   |
+|Faces                  |Number of Faces * 3 * 7 * 4 bytes    |A list of all faces in the mesh (See Face Index Order below).   |
 
 ## Face Index Order
 
