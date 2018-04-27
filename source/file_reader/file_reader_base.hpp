@@ -4,11 +4,17 @@
 #include <cstddef>
 #include <cstdint>
 
+#include <exception>
+
 #include <string>
 
 namespace nh {
 
-class BaseFileReader {
+struct file_not_found_exception_t : std::exception {
+  const char* what() const noexcept { return "file not found"; };
+};
+
+class file_reader_base_t {
 
   public:
 

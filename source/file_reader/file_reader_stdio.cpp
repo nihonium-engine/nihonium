@@ -2,13 +2,19 @@
 
 namespace nh {
 
-StdioFileReader::StdioFileReader(std::string file) {
+file_reader_stdio_t::file_reader_stdio_t(std::string file) {
 
   this->file = fopen(file.c_str(), "rb");
 
+  if (!this->file) {
+    if (errno == ENOENT) {
+      throw file_not_found_exception_t();
+    }
+  }
+
 }
 
-size_t StdioFileReader::read_bytes(size_t num_bytes, uint8_t* destination) {
+size_t file_reader_stdio_t::read_bytes(size_t num_bytes, uint8_t* destination) {
 
   size_t bytes_read = fread(destination, 1, num_bytes, this->file);
 
@@ -18,19 +24,19 @@ size_t StdioFileReader::read_bytes(size_t num_bytes, uint8_t* destination) {
 
 }
 
-void StdioFileReader::set_pos_absolute(size_t pos) {
+void file_reader_stdio_t::set_pos_absolute(size_t pos) {
   fseek(this->file, pos, SEEK_SET);
 }
 
-void StdioFileReader::set_pos_forwards(size_t pos) {
+void file_reader_stdio_t::set_pos_forwards(size_t pos) {
   fseek(this->file, pos, SEEK_CUR);
 }
 
-void StdioFileReader::set_pos_backwards(size_t pos) {
+void file_reader_stdio_t::set_pos_backwards(size_t pos) {
   fseek(this->file, -pos, SEEK_CUR);
 }
 
-size_t StdioFileReader::get_pos() {
+size_t file_reader_stdio_t::get_pos() {
 
   return ftell(this->file);
 

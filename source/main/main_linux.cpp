@@ -1,34 +1,24 @@
 
-#include "../roles/single.hpp"
 #include "../screen/glfw.hpp"
 
-nh::BaseRole* role;
+#include "../file_reader/file_reader_stdio.hpp"
+#include "../file_reader/file_reader_nar.hpp"
+
+#include <stdio.h>
 
 int main(int argc, char** argv) {
 
   (void)argc; (void)argv;
 
-  nh::BaseScreen* screen = new nh::GLFWScreen();
+  nh::file_reader_stdio_t* file_reader = new nh::file_reader_stdio_t("test.nar");
+  nh::file_reader_nar_t* nar_reader = new nh::file_reader_nar_t("LICENCE.txt", file_reader);
 
-  screen->initialise();
+  char* bytes = new char[21];
+  nar_reader->read_bytes(20, (uint8_t*)bytes);
+  bytes[21] = '\0';
 
-  while (true) {
-    screen->update();
-  }
+  printf("%s\n", bytes);
 
-  screen->uninitialise();
-
-  /*
-  role = new nh::SingleRole();
-
-  role->initialise();
-
-  role->main_loop();
-
-  role->uninitialise();
-
-  delete role;
-  */
   return 0;
 
 }

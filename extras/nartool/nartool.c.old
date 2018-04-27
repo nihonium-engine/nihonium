@@ -242,14 +242,18 @@ void run_commands(NARToolCommand* commands, size_t num_commands) {
       }
       
       // These two are very similar so they are bunched together and separated later on. Not great, but it works™.
-      case NARTOOL_COMMAND_ADD: {
+      case NARTOOL_COMMAND_ADD:
+      case NARTOOL_COMMAND_REPLACE: {
 
         if (!current_archive) {
           fprintf(stderr, "Error: Add or replace operation requested without a current archive being specified.\n");
           exit(1);
         }
 
-        
+        if (commands[i].type == NARTOOL_COMMAND_ADD) {
+          fseek(current_archive_file, 0, SEEK_END);
+          fwrite();
+        }
 
         break;
       }

@@ -21,19 +21,19 @@ project "nihonium"
 
   includedirs { "include" }
 
+  files {
+    "source/common/**.cpp",
+    "source/screen/base.cpp",
+    "source/file_reader/file_reader_base.cpp",
+    "source/file_reader/file_reader_nar.cpp"
+  }
+
   filter "configurations:debug"
     defines { "NH_DEBUG" }
     symbols "On"
 
   filter "configurations:release"
     optimize "On"
-
-  files {
-    "source/common/**.cpp",
-    "source/roles/base.cpp",
-    "source/roles/single.cpp",
-    "source/screen/base.cpp"
-  }
 
   filter "platforms:windows"
     links { "glfw", "opengl32" }
@@ -50,7 +50,8 @@ project "nihonium"
     files {
       "external/glad/src/glad.c",
       "source/main/main_linux.cpp",
-      "source/screen/glfw.cpp"
+      "source/screen/glfw.cpp",
+      "source/file_reader/file_reader_stdio.cpp"
     }
 
 project "glfw"

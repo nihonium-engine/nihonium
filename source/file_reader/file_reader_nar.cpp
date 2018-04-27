@@ -2,7 +2,7 @@
 
 namespace nh {
 
-NARFileReader::NARFileReader(std::string file, BaseFileReader* source_reader) {
+file_reader_nar_t::file_reader_nar_t(std::string file, file_reader_base_t* source_reader) {
 
   this->source_reader = source_reader;
 
@@ -10,7 +10,6 @@ NARFileReader::NARFileReader(std::string file, BaseFileReader* source_reader) {
   uint8_t* header_bytes = (uint8_t*)&header;
 
   if (memcmp(header_bytes, "NAR", 3) != 0) {
-    // TODO: Decide on our stance on exceptions.
     throw std::exception();
   }
 
@@ -42,15 +41,17 @@ NARFileReader::NARFileReader(std::string file, BaseFileReader* source_reader) {
         this->compression_format = file_metadata[0];
         this->file_length = file_contents_length;
 
+        return;
+
       }
     }
   }
 
-  throw std::exception();
+  throw file_not_found_exception_t();
 
 }
 
-size_t NARFileReader::read_bytes(size_t num_bytes, uint8_t* destination) {
+size_t file_reader_nar_t::read_bytes(size_t num_bytes, uint8_t* destination) {
 
   this->source_reader->set_pos_absolute(this->file_start_offset + this->offset_in_file);
   size_t bytes_read = this->source_reader->read_bytes(num_bytes, destination);
@@ -60,16 +61,21 @@ size_t NARFileReader::read_bytes(size_t num_bytes, uint8_t* destination) {
   return bytes_read;
 }
 
-void NARFileReader::set_pos_absolute(size_t pos) {
+void file_reader_nar_t::set_pos_absolute(size_t pos) {
   this->offset_in_file = pos > this->file_length ? this->file_length : pos;
 }
 
-void NARFileReader::set_pos_forwards(size_t pos) {
+void file_reader_nar_t::set_pos_forwards(size_t pos) {
   this->offset_in_file = (this->offset_in_file + pos) > this->file_length ? this->file_length : this->offset_in_file + pos;
 }
 
-void NARFileReader::set_pos_backwards(size_t pos) {
+void file_reader_nar_t::set_pos_backwards(size_t pos) {
   this->offset_in_file = pos > this->offset_in_file ? 0 : this->offset_in_file - pos;
+}
+
+
+size_t file_reader_nar_t::get_pos() {
+  return this->offset_in_file;
 }
 
 }

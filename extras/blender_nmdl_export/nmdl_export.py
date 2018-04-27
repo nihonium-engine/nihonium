@@ -1,9 +1,11 @@
 bl_info = {
-  "name": "NRES Export"
+  "name": "NMDL Export",
+  "version": (0, 0, 1),
+  "location": "File > Export > NMDL Model",
+  "description": "Nihonium Engine NMDL format (.nmdl)",
   "category": "Export"
 }
 
-import Blender
 import bpy
 
 def write_file(filename):

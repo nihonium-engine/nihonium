@@ -12,17 +12,10 @@ namespace nh {
 
 class BaseMesh {
 
-  NHMVec3* vertex_data;
-  size_t num_vertices;
+  public:
 
-  NHMVec3* normal_data;
-  size_t num_normals;
+  std::string name;
 
-  NHMVec2* uv_data;
-  size_t size_uvs;
-  
-  int* index_data;
-  size_t num_indices;
 };
 
 class BaseMeshFactory {
