@@ -1,23 +1,32 @@
 
-#include "../screen/glfw.hpp"
-
 #include "../file_reader/file_reader_stdio.hpp"
 #include "../file_reader/file_reader_nar.hpp"
 
-#include <stdio.h>
+#include "../renderer/renderer_glfw_gl.hpp"
+
+#include "../model/mesh_gl.hpp"
+#include "../model/model_factory.hpp"
+
+#include <cstdio>
 
 int main(int argc, char** argv) {
 
   (void)argc; (void)argv;
 
-  nh::file_reader_stdio_t* file_reader = new nh::file_reader_stdio_t("test.nar");
-  nh::file_reader_nar_t* nar_reader = new nh::file_reader_nar_t("LICENCE.txt", file_reader);
+  nh::renderer_glfw_gl_t* renderer = new nh::renderer_glfw_gl_t();
 
-  char* bytes = new char[21];
-  nar_reader->read_bytes(20, (uint8_t*)bytes);
-  bytes[21] = '\0';
+  nh::model_factory_t* model_factory = new nh::model_factory_t();
 
-  printf("%s\n", bytes);
+  nh::file_reader_stdio_t* reader = new nh::file_reader_stdio_t("test.nmdl");
+
+  nh::model_t* model = model_factory->load_model<nh::mesh_gl_t>(reader);
+
+  while (true) {
+    renderer->frame_start();
+    for (size_t i = 0; i < model->meshes.size(); i++) {
+      dynamic_cast<nh::mesh_gl_t*>(model->meshes[i])->temp_draw();
+    }
+  }
 
   return 0;
 

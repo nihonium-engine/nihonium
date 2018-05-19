@@ -23,9 +23,12 @@ project "nihonium"
 
   files {
     "source/common/**.cpp",
-    "source/screen/base.cpp",
+    "source/renderer/renderer_base.cpp",
     "source/file_reader/file_reader_base.cpp",
-    "source/file_reader/file_reader_nar.cpp"
+    "source/file_reader/file_reader_nar.cpp",
+    "source/model/model.cpp",
+    "source/model/model_factory.cpp",
+    "source/model/mesh_base.cpp"
   }
 
   filter "configurations:debug"
@@ -41,7 +44,8 @@ project "nihonium"
     files {
       "external/glad/src/glad.c",
       "source/main/main_windows.cpp",
-      "source/screen/glfw.cpp"
+      "source/renderer/renderer_glfw_gl.cpp",
+      "source/model/mesh_gl.cpp"
     }
     
   filter "platforms:linux"
@@ -50,8 +54,9 @@ project "nihonium"
     files {
       "external/glad/src/glad.c",
       "source/main/main_linux.cpp",
-      "source/screen/glfw.cpp",
-      "source/file_reader/file_reader_stdio.cpp"
+      "source/renderer/renderer_glfw_gl.cpp",
+      "source/file_reader/file_reader_stdio.cpp",
+      "source/model/mesh_gl.cpp"
     }
 
 project "glfw"
