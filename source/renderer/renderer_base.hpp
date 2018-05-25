@@ -1,13 +1,31 @@
 #ifndef NH_RENDERER_BASE_H
 #define NH_RENDERER_BASE_H
 
+#include <vector>
+
+#include "../model/model.hpp"
+#include "../shader/shader_base.hpp"
+
 namespace nh {
+
+struct render_queue_item_t {
+  model_t* model;
+  shader_base_t* shader;
+  int layer;
+};
 
 class renderer_base_t {
 
     public:
     virtual void frame_start() = 0;
-  
+
+    void add_to_render_queue(render_queue_item_t item);
+
+    virtual void render() = 0;
+
+    protected:
+    std::vector<render_queue_item_t> render_queue;
+
 };
   
 }

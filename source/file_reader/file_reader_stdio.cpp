@@ -42,4 +42,12 @@ size_t file_reader_stdio_t::get_pos() {
 
 }
 
+size_t file_reader_stdio_t::get_length() {
+  size_t current_pos = ftell(this->file);
+  fseek(this->file, 0, SEEK_END);
+  size_t length = ftell(this->file);
+  fseek(this->file, current_pos, SEEK_SET);
+  return length;
+}
+
 }

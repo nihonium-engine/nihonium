@@ -78,4 +78,8 @@ size_t file_reader_nar_t::get_pos() {
   return this->offset_in_file;
 }
 
+size_t file_reader_nar_t::get_length() {
+  return this->file_length;
+}
+
 }

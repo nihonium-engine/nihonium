@@ -28,6 +28,8 @@ class file_reader_base_t {
   uint32_t read_uint32();
   uint64_t read_uint64();
 
+  virtual size_t get_length() = 0;
+
   virtual size_t get_pos() = 0;
 
 };

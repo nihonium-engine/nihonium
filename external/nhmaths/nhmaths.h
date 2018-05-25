@@ -65,7 +65,7 @@ nhm_mat4_t nhm_new_mat4_zero(void);
 nhm_mat4_t nhm_new_mat4_identity(void);
 nhm_mat4_t nhm_new_mat4_translate(nhm_vec4_t translation);
 nhm_mat4_t nhm_new_mat4_scale(nhm_vec4_t scale);
-nhm_mat4_t nhm_new_mat4_perspective(nhm_float_t fov, nhm_float_t aspect_ratio, nhm_float_t near, nhm_float_t far);
+extern nhm_mat4_t nhm_new_mat4_perspective(nhm_float_t fov, nhm_float_t aspect_ratio, nhm_float_t near, nhm_float_t far);
 nhm_mat4_t nhm_new_mat4_orthographic(nhm_float_t left, nhm_float_t right, nhm_float_t bottom, nhm_float_t top, nhm_float_t near, nhm_float_t far);
 nhm_mat4_t nhm_new_mat4_from_quaternion(nhm_quaternion_t quaternion);
 
@@ -190,7 +190,7 @@ nhm_mat4_t nhm_new_mat4_scale(nhm_vec4_t scale) {
   
 }
 
-nhm_mat4_t nhm_new_mat4_perspective(nhm_float_t fov, nhm_float_t aspect_ratio, nhm_float_t near, nhm_float_t far) {
+extern nhm_mat4_t nhm_new_mat4_perspective(nhm_float_t fov, nhm_float_t aspect_ratio, nhm_float_t near, nhm_float_t far) {
 
   nhm_mat4_t mat4 = nhm_new_mat4_zero();
 
@@ -238,17 +238,17 @@ nhm_mat4_t nhm_new_mat4_from_quaternion(nhm_quaternion_t quaternion) {
   nhm_float_t wy = quaternion.w * quaternion.y;
   nhm_float_t wz = quaternion.w * quaternion.z;
 
-  out.elements[0][0] = 1.0 - 2.0 * (yy + zz);
-  out.elements[0][1] = 2.0 * (xy + wz);
-  out.elements[0][2] = 2.0 * (xz - yz);
+  out.elements[0] = 1.0 - 2.0 * (yy + zz);
+  out.elements[1] = 2.0 * (xy + wz);
+  out.elements[2] = 2.0 * (xz - yz);
 
-  out.elements[1][0] = 2.0 * (xy - wz);
-  out.elements[1][1] = 1.0 - 2.0 * (xx + zz);
-  out.elements[1][2] = 2.0 * (yz + wx);
+  out.elements[4] = 2.0 * (xy - wz);
+  out.elements[5] = 1.0 - 2.0 * (xx + zz);
+  out.elements[6] = 2.0 * (yz + wx);
   
-  out.elements[2][0] = 2.0 * (xz + wy);
-  out.elements[2][1] = 2.0 * (yz - wx);
-  out.elements[2][2] = 1.0 - 2.0 * (xx + yy);
+  out.elements[8] = 2.0 * (xz + wy);
+  out.elements[9] = 2.0 * (yz - wx);
+  out.elements[10] = 1.0 - 2.0 * (xx + yy);
 
   return out;
 
@@ -455,7 +455,7 @@ nhm_quaternion_t nhm_quaternion_normalise(nhm_quaternion_t quaternion) {
 nhm_mat4_t nhm_mat4_add(nhm_mat4_t left, nhm_mat4_t right) {
   nhm_mat4_t out;
   for (int i = 0; i < 16; i++) {
-    out[i] = left[i] + right[i];
+    out.elements[i] = left.elements[i] + right.elements[i];
   }
   return out;
 }
@@ -463,7 +463,7 @@ nhm_mat4_t nhm_mat4_add(nhm_mat4_t left, nhm_mat4_t right) {
 nhm_mat4_t nhm_mat4_subtract(nhm_mat4_t left, nhm_mat4_t right) {
   nhm_mat4_t out;
   for (int i = 0; i < 16; i++) {
-    out[i] = left[i] - right[i];
+    out.elements[i] = left.elements[i] - right.elements[i];
   }
   return out;
 }
@@ -490,7 +490,7 @@ nhm_mat4_t nhm_mat4_multiply(nhm_mat4_t left, nhm_mat4_t right) {
 nhm_mat4_t nhm_mat4_multiply_scalar(nhm_float_t left, nhm_mat4_t right) {
   nhm_mat4_t out;
   for (int i = 0; i < 16; i++) {
-    out[i] = left * right[i]
+    out.elements[i] = left * right.elements[i];
   }
   return out;
 }

@@ -15,8 +15,6 @@ class mesh_gl_t : public mesh_base_t {
 
   void initialise();
 
-  void temp_draw();
-
 };
 
 }
