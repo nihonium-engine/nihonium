@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "../../external/hmm/HandmadeMath.h"
+
 #include "../model/model.hpp"
 #include "../shader/shader_base.hpp"
 
@@ -11,6 +13,9 @@ namespace nh {
 struct render_queue_item_t {
   model_t* model;
   shader_base_t* shader;
+  hmm_vec3 position;
+  hmm_quaternion rotation;
+  hmm_vec3 scale;
   int layer;
 };
 

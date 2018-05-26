@@ -3,8 +3,8 @@
 
 #include "../../external/hmm/HandmadeMath.h"
 
-#include "../../include/glad/glad.h"
-#include "../../include/GLFW/glfw3.h"
+#include "../../external/glad/glad.h"
+#include "../../external/glfw/glfw3.h"
 
 #include "../model/mesh_gl.hpp"
 #include "../shader/shader_gl.hpp"

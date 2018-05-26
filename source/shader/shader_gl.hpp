@@ -1,7 +1,7 @@
 #ifndef NH_SHADER_GL_H
 #define NH_SHADER_GL_H
 
-#include "../../include/glad/glad.h"
+#include "../../external/glad/glad.h"
 
 #include "shader_base.hpp"
 

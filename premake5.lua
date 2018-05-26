@@ -19,8 +19,6 @@ project "nihonium"
 
   targetdir "bin/%{cfg.buildcfg}"
 
-  includedirs { "include" }
-
   files {
     "external/hmm/HandmadeMath.c",
     "source/common/**.cpp",
@@ -44,7 +42,7 @@ project "nihonium"
     links { "glfw", "opengl32" }
     defines { "NH_WINDOWS" }
     files {
-      "external/glad/src/glad.c",
+      "external/glad/glad.c",
       "source/main/main_windows.cpp",
       "source/renderer/renderer_glfw_gl.cpp",
       "source/model/mesh_gl.cpp",
@@ -55,7 +53,7 @@ project "nihonium"
     links { "glfw", "GL", "dl", "X11", "Xinerama", "Xrandr", "Xcursor", "pthread" }
     defines { "NH_LINUX" }
     files {
-      "external/glad/src/glad.c",
+      "external/glad/glad.c",
       "source/main/main_linux.cpp",
       "source/renderer/renderer_glfw_gl.cpp",
       "source/file_reader/file_reader_stdio.cpp",
