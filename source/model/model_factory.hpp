@@ -12,8 +12,6 @@ class model_factory_t {
 
   public:
 
-  // I'll be honest, I have no idea why C++ template functions have to be
-  // implemented in the header. All I know is that it works when I do.
   template <typename T> model_t* load_model(file_reader_base_t* reader) {
     uint8_t header[4];
     reader->read_bytes(4, header);
@@ -38,30 +36,16 @@ class model_factory_t {
   
       uint8_t metadata[4];
       reader->read_bytes(4, metadata);
-      uint32_t mesh_name_length = reader->read_uint32();
-      uint32_t mesh_material_length = reader->read_uint32();
-      uint32_t num_positions = reader->read_uint32();
-      uint32_t num_normals = reader->read_uint32();
-      uint32_t num_uvs = reader->read_uint32();
+      uint32_t num_vertices = reader->read_uint32();
       uint32_t num_faces = reader->read_uint32();
-  
-      char* mesh_name_c_str = new char[mesh_name_length];
-      reader->read_bytes(mesh_name_length, (uint8_t*)mesh_name_c_str);
-      mesh->name = std::string(mesh_name_c_str);
-      delete mesh_name_c_str;
 
-      char* material_name_c_str = new char[mesh_material_length];
-      reader->read_bytes(mesh_material_length, (uint8_t*)material_name_c_str);
-      //mesh->name = std::string(mesh_name_c_str);
-      delete material_name_c_str;
-
-      nhm_float_t* mesh_data = new nhm_float_t[num_positions * 8];
-      reader->read_bytes(num_positions * 8 * sizeof(nhm_float_t), (uint8_t*)mesh_data);
+      nhm_float_t* mesh_data = new nhm_float_t[num_vertices * 8];
+      reader->read_bytes(num_vertices * 8 * sizeof(nhm_float_t), (uint8_t*)mesh_data);
 
       uint16_t* faces = new uint16_t[num_faces * 3];
       reader->read_bytes(num_faces * 3 * sizeof(uint16_t), (uint8_t*)faces);
 
-      for (int i = 0; i < num_positions * 8; i += 8) {
+      for (int i = 0; i < num_vertices * 8; i += 8) {
         mesh_vertex_t vertex = {
           mesh_data[i + 0],
           mesh_data[i + 1],
