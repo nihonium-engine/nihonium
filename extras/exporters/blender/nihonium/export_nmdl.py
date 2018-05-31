@@ -51,15 +51,8 @@ def write(context,
             if obj is not None:
                 mesh_triangulate(obj)
                 f.write(pack("<L", 0))
-                f.write(pack("<L", len(v.name)))
-                f.write(pack("<L", len(obj.materials[0].name)))
                 f.write(pack("<L", len(obj.vertices)))
-                f.write(pack("<L", len(obj.vertices)))
-                f.write(pack("<L", 0))
                 f.write(pack("<L", len(obj.polygons)))
-
-                f.write(bytes(v.name, 'utf-8'))
-                f.write(bytes(obj.materials[0].name, 'utf-8'))
  
                 for vertex in obj.vertices:
                     for i in [0, 2, 1]: # Make sure to swap Y and Z axes.
@@ -67,7 +60,7 @@ def write(context,
                     for i in range(0, 3):
                         f.write(pack("f", vertex.normal[i]))
                     for i in range(0, 2):
-                        f.write(pack("f", 0));
+                        f.write(pack("f", 0))
 
                 for poly in obj.polygons:
                     for i in range(0, 3):

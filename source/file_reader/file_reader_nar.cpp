@@ -30,8 +30,6 @@ file_reader_nar_t::file_reader_nar_t(std::string file, file_reader_base_t* sourc
     char* file_name = new char[file_name_length];
     this->source_reader->read_bytes(file_name_length, (uint8_t*)file_name);
 
-    // We check if the lengths are identical first as that will immediately invalidate most non-matching file names.
-    // It also makes the string comparison somewhat easier to do safely.
     if (file_name_length == file.length()) {
 
       if (memcmp(file_name, file.c_str(), file_name_length) == 0) {

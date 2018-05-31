@@ -19,8 +19,6 @@ struct mesh_vertex_indices_t {
   uint32_t uv_index;
 };
 
-bool operator<(const mesh_vertex_indices_t& a, const mesh_vertex_indices_t& b);
-
 struct mesh_vertex_t {
   nhm_vec3_t position;
   nhm_vec3_t normal;

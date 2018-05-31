@@ -2,6 +2,9 @@
 #include "../file_reader/file_reader_stdio.hpp"
 #include "../file_reader/file_reader_nar.hpp"
 
+#include "../filesystem/filesystem.hpp"
+#include "../filesystem/mount_nar.hpp"
+
 #include "../renderer/renderer_glfw_gl.hpp"
 
 #include "../model/mesh_gl.hpp"
@@ -14,6 +17,17 @@
 int main(int argc, char** argv) {
 
   (void)argc; (void)argv;
+
+  nh::filesystem_t* filesystem = new nh::filesystem_t();
+  nh::mount_nar_t* mount_main = new nh::mount_nar_t("test.nar");
+
+  filesystem->add_mount("main", mount_main);
+  
+  nh::file_base_t* file = filesystem->open_file("main:LICENCE.txt");
+  char* x = new char[16];
+  x[15] = '\0';
+  file->read(15, (uint8_t*)x);
+  printf("Test: %s\n", x);
 
   nh::renderer_glfw_gl_t* renderer = new nh::renderer_glfw_gl_t();
 

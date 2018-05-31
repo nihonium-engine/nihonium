@@ -21,10 +21,14 @@ project "nihonium"
 
   files {
     "external/hmm/HandmadeMath.c",
+    "external/stb_image/stb_image.c",
     "source/common/**.cpp",
     "source/renderer/renderer_base.cpp",
     "source/file_reader/file_reader_base.cpp",
     "source/file_reader/file_reader_nar.cpp",
+    "source/filesystem/filesystem.cpp",
+    "source/filesystem/mount_base.cpp",
+    "source/filesystem/mount_nar.cpp",   
     "source/model/model.cpp",
     "source/model/model_factory.cpp",
     "source/model/mesh_base.cpp",
