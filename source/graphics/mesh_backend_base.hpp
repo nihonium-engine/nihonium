@@ -1,4 +1,0 @@
-#ifndef NH_MESH_BACKEND_BASE_H
-#define NH_MESH_BACKEND_BASE_H
-
-#endif

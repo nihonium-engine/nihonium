@@ -2,12 +2,10 @@
 
 The `source` directory holds the source code. It is organised into the following subdirectories:
 
-* `audio` - The code used to output audio through each of the supported audio backends, e.g. PulseAudio and XAudio2.
-* `client` - The code used for the 'client' role.
-* `common` - The code used for various platform-independent things, like model loading.
-* `graphics` - The code used to draw to the screen using each of the supported graphics backends, e.g. OpenGL and Direct3D.
-* `input` - The code used to receive input from the user.
-* `peer` - The code used for the 'peer' role.
-* `screen` - The code used to manage window-related things like screen size, window title etc.
-* `server` - The code used for the 'server' role.
-* `single` - The code used for the 'single' role.
+* `file_reader` - Temporary interface for loading files. It is currently in the process of being replaced with `filesystem`.
+* `filesystem` - Interface for loading files.
+* `main` - Code for initialising the engine for each platform. This is where the `main()` functions are found.
+* `model` - Code for loading models and meshes, and initialising meshes for each platform.
+* `renderer` - Code for setting up windows etc. and drawing meshes to the screen.
+* `shader` - Code for loading and initialising shaders.
+* `texture` - Code for loading and initialising textures.
