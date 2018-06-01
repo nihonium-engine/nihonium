@@ -39,8 +39,8 @@ class model_factory_t {
       uint32_t num_vertices = reader->read_uint32();
       uint32_t num_faces = reader->read_uint32();
 
-      nhm_float_t* mesh_data = new nhm_float_t[num_vertices * 8];
-      reader->read_bytes(num_vertices * 8 * sizeof(nhm_float_t), (uint8_t*)mesh_data);
+      float* mesh_data = new float[num_vertices * 8];
+      reader->read_bytes(num_vertices * 8 * sizeof(float), (uint8_t*)mesh_data);
 
       uint16_t* faces = new uint16_t[num_faces * 3];
       reader->read_bytes(num_faces * 3 * sizeof(uint16_t), (uint8_t*)faces);

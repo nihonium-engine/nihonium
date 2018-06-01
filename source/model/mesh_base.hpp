@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include "../../external/nhmaths/nhmaths.h"
+#include "../../external/hmm/HandmadeMath.h"
 
 #include "../file_reader/file_reader_base.hpp"
 
@@ -20,9 +20,9 @@ struct mesh_vertex_indices_t {
 };
 
 struct mesh_vertex_t {
-  nhm_vec3_t position;
-  nhm_vec3_t normal;
-  nhm_vec2_t uv;
+  hmm_vec3 position;
+  hmm_vec3 normal;
+  hmm_vec2 uv;
 };
 
 class mesh_base_t {
