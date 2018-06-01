@@ -24,6 +24,12 @@ void file_directory_t::seek_end(int offset) {
   fseek(this->file, -offset, SEEK_END);
 }
 
+size_t file_directory_t::tell() {
+
+  return ftell(this->file);
+
+}
+
 size_t file_directory_t::read(size_t bytes, uint8_t* dest) {
   return fread(dest, 1, bytes, this->file);
 }

@@ -20,6 +20,8 @@ class file_nar_t : public file_base_t {
 
   size_t read(size_t bytes, uint8_t* dest) override;
 
+  size_t tell() override;
+
   void close() override;
   bool eof() override;
 

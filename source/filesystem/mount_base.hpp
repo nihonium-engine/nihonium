@@ -13,6 +13,8 @@ class file_base_t {
   virtual void seek_start(int offset) = 0;
   virtual void seek_end(int offset) = 0;
 
+  virtual size_t tell() = 0;
+
   virtual size_t read(size_t bytes, uint8_t* dest) = 0;
 
   virtual void close() = 0;

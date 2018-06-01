@@ -21,6 +21,10 @@ void file_nar_t::seek_end(int offset) {
   this->current_offset = this->file_size - offset;
 }
 
+size_t file_nar_t::tell() {
+  return this->current_offset;
+}
+
 size_t file_nar_t::read(size_t bytes, uint8_t* dest) {
   this->eof_marker = false;
 

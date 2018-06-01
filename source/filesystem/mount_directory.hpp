@@ -15,6 +15,8 @@ class file_directory_t : public file_base_t {
   void seek_start(int offset) override;
   void seek_end(int offset) override;
 
+  size_t tell() override;
+
   size_t read(size_t bytes, uint8_t* dest) override;
 
   void close() override;
