@@ -22,6 +22,13 @@ void file_nar_t::seek_end(int offset) {
 }
 
 size_t file_nar_t::read(size_t bytes, uint8_t* dest) {
+  this->eof_marker = false;
+
+  if (this->current_offset + bytes > this->file_size) {
+    bytes = this->file_size - this->current_offset;
+    this->eof_marker = true;
+  }
+
   fseek(this->base_file, this->file_start_offset + this->current_offset, SEEK_SET);
   size_t bytes_read = fread(dest, 1, bytes, this->base_file);
   this->current_offset += bytes_read;
@@ -29,11 +36,11 @@ size_t file_nar_t::read(size_t bytes, uint8_t* dest) {
 }
 
 void file_nar_t::close() {
-  fclose(this->base_file);
+  this->base_file = nullptr;
 }
 
 bool file_nar_t::eof() {
-  return feof(this->base_file);
+  return eof_marker;
 }
 
 mount_nar_t::mount_nar_t(std::string nar_path) {

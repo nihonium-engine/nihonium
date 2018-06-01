@@ -24,6 +24,7 @@ class file_nar_t : public file_base_t {
   bool eof() override;
 
   private:
+  bool eof_marker;
   uint64_t file_start_offset;
   uint64_t file_size;
   uint64_t current_offset;
