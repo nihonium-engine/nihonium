@@ -20,6 +20,10 @@ class file_base_t {
   virtual void close() = 0;
   virtual bool eof() = 0;
 
+  uint16_t read_uint16();
+  uint32_t read_uint32();
+  uint64_t read_uint64();
+
 };
 
 class mount_base_t {
