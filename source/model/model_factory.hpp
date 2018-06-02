@@ -3,7 +3,7 @@
 
 #include <map>
 
-#include "../file_reader/file_reader_base.hpp"
+#include "../filesystem/mount_base.hpp"
 #include "model.hpp"
 
 namespace nh {
@@ -12,9 +12,9 @@ class model_factory_t {
 
   public:
 
-  template <typename T> model_t* load_model(file_reader_base_t* reader) {
+  template <typename T> model_t* load_model(file_base_t* reader) {
     uint8_t header[4];
-    reader->read_bytes(4, header);
+    reader->read(4, header);
   
     if (memcmp(header, "NMDL", 4) != 0) {
       throw std::exception();
@@ -35,15 +35,15 @@ class model_factory_t {
       mesh_base_t* mesh = new T();
   
       uint8_t metadata[4];
-      reader->read_bytes(4, metadata);
+      reader->read(4, metadata);
       uint32_t num_vertices = reader->read_uint32();
       uint32_t num_faces = reader->read_uint32();
 
       float* mesh_data = new float[num_vertices * 8];
-      reader->read_bytes(num_vertices * 8 * sizeof(float), (uint8_t*)mesh_data);
+      reader->read(num_vertices * 8 * sizeof(float), (uint8_t*)mesh_data);
 
       uint16_t* faces = new uint16_t[num_faces * 3];
-      reader->read_bytes(num_faces * 3 * sizeof(uint16_t), (uint8_t*)faces);
+      reader->read(num_faces * 3 * sizeof(uint16_t), (uint8_t*)faces);
 
       for (int i = 0; i < num_vertices * 8; i += 8) {
         mesh_vertex_t vertex = {

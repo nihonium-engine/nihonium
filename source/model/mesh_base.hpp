@@ -5,11 +5,10 @@
 #include <cstdint>
 #include <cstring>
 
+#include <string>
 #include <vector>
 
 #include "../../external/hmm/HandmadeMath.h"
-
-#include "../file_reader/file_reader_base.hpp"
 
 namespace nh {
 

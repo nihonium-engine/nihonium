@@ -28,6 +28,7 @@ int main(int argc, char** argv) {
   printf("Test: %s\n", x);
 
   nh::mount_directory_t* mount_main = new nh::mount_directory_t("./");
+  filesystem->add_mount("main", mount_main);
 
   nh::renderer_glfw_gl_t* renderer = new nh::renderer_glfw_gl_t();
 

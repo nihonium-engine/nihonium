@@ -27,7 +27,7 @@ class file_directory_t : public file_base_t {
 
 };
 
-class mount_directory_t {
+class mount_directory_t : public mount_base_t {
 
   public:
   mount_directory_t(std::string base_path);
