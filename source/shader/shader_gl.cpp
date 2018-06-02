@@ -4,8 +4,8 @@ namespace nh {
 
 void shader_gl_t::initialise() {
 
-  // TODO: Give more precise errors (i.e. check log).
-  // I've deferred this task to when a proper error logging system is added.
+  // TODO: Modify this to use a proper logging system.
+  // Of course, a proper logging system needs to exist first.
 
   GLint success;
 
@@ -15,7 +15,12 @@ void shader_gl_t::initialise() {
 
   glGetShaderiv(vert_shader, GL_COMPILE_STATUS, &success);
   if (!success) {
-    printf("Something bad happened with the vertex shader.\n");
+    GLint length;
+    glGetShaderiv(vert_shader, GL_INFO_LOG_LENGTH, &length);
+    char* message = new char[length];
+    glGetShaderInfoLog(vert_shader, length, nullptr, message);
+    printf("Vertex shader error: %s\n", message);
+    delete[] message;
   }
 
   GLuint frag_shader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -24,7 +29,12 @@ void shader_gl_t::initialise() {
 
   glGetShaderiv(frag_shader, GL_COMPILE_STATUS, &success);
   if (!success) {
-    printf("Something bad happened with the fragment shader.\n");
+    GLint length;
+    glGetShaderiv(frag_shader, GL_INFO_LOG_LENGTH, &length);
+    char* message = new char[length];
+    glGetShaderInfoLog(frag_shader, length, nullptr, message);
+    printf("Fragment shader error: %s\n", message);
+    delete[] message;
   }
 
   this->program = glCreateProgram();
@@ -33,8 +43,13 @@ void shader_gl_t::initialise() {
   glLinkProgram(this->program);
 
   glGetProgramiv(this->program, GL_LINK_STATUS, &success);
-  if(!success) {
-    printf("Something bad happened with the program.\n");
+  if (!success) {
+    GLint length;
+    glGetProgramiv(this->program, GL_INFO_LOG_LENGTH, &length);
+    char* message = new char[length];
+    glGetProgramInfoLog(this->program, length, nullptr, message);
+    printf("Program link error: %s\n", message);
+    delete[] message;
   }
 
   glDeleteShader(vert_shader);
