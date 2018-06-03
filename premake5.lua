@@ -23,8 +23,6 @@ project "nihonium"
     "external/hmm/HandmadeMath.c",
     "external/stb_image/stb_image.c",
     "source/renderer/renderer_base.cpp",
-    "source/file_reader/file_reader_base.cpp",
-    "source/file_reader/file_reader_nar.cpp",
     "source/filesystem/filesystem.cpp",
     "source/filesystem/mount_base.cpp",
     "source/filesystem/mount_nar.cpp",
@@ -61,7 +59,6 @@ project "nihonium"
       "external/glad/glad.c",
       "source/main/main_linux.cpp",
       "source/renderer/renderer_glfw_gl.cpp",
-      "source/file_reader/file_reader_stdio.cpp",
       "source/model/mesh_gl.cpp",
       "source/shader/shader_gl.cpp"
     }
