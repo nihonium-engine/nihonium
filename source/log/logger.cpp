@@ -19,13 +19,13 @@ void logger_t::log_info(std::string format, ...) {
   va_list list;
 
   va_start(list, format);
-  vfprintf(this->log_file, (log_file_prefixes[0] + format).c_str(), list);
+  vfprintf(this->log_file, (log_file_prefixes[0] + format + "\n").c_str(), list);
   va_end(list);
 
   fflush(this->log_file);
 
   va_start(list, format);
-  vprintf((stdio_prefixes[0] + format + "\e[0;97m\n").c_str(), list);
+  vprintf((stdio_prefixes[0] + format + "\e[0m\n").c_str(), list);
   va_end(list);
     
 }
@@ -35,13 +35,13 @@ void logger_t::log_warning(std::string format, ...) {
   va_list list;
   
   va_start(list, format);
-  vfprintf(this->log_file, (log_file_prefixes[1] + format).c_str(), list);
+  vfprintf(this->log_file, (log_file_prefixes[1] + format + "\n").c_str(), list);
   va_end(list);
 
   fflush(this->log_file);
 
   va_start(list, format);
-  vprintf((stdio_prefixes[1] + format + "\e[0;97m\n").c_str(), list);
+  vprintf((stdio_prefixes[1] + format + "\e[0m\n").c_str(), list);
   va_end(list);
 
 }
