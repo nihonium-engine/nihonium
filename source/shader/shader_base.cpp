@@ -24,5 +24,8 @@ shader_base_t::~shader_base_t() {
   delete vert_source;
   delete frag_source;
 }
+shader_factory_t::shader_factory_t(logger_t* logger) {
+  this->logger = logger;
+}
 
 }

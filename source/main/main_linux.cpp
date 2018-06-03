@@ -10,11 +10,15 @@
 
 #include "../shader/shader_gl.hpp"
 
+#include "../log/logger.hpp"
+
 #include <cstdio>
 
 int main(int argc, char** argv) {
 
   (void)argc; (void)argv;
+
+  nh::logger_t* logger = new nh::logger_t("log.txt");
 
   nh::filesystem_t* filesystem = new nh::filesystem_t();
   nh::mount_nar_t* mount_test = new nh::mount_nar_t("test.nar");
@@ -39,7 +43,7 @@ int main(int argc, char** argv) {
   nh::file_base_t* vert_reader = filesystem->open_file("main:vert.vert");
   nh::file_base_t* frag_reader = filesystem->open_file("main:frag.frag");
 
-  nh::shader_factory_t* shader_factory = new nh::shader_factory_t();
+  nh::shader_factory_t* shader_factory = new nh::shader_factory_t(logger);
 
   nh::shader_base_t* shader = shader_factory->shader_create<nh::shader_gl_t>(vert_reader, frag_reader);
 

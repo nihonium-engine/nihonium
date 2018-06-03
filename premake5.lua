@@ -33,7 +33,7 @@ project "nihonium"
     "source/model/model_factory.cpp",
     "source/model/mesh_base.cpp",
     "source/shader/shader_base.cpp",
-    "source/logger/logger.cpp"
+    "source/log/logger.cpp"
   }
 
   filter "configurations:debug"

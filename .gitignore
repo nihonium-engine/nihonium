@@ -10,3 +10,6 @@ Makefile
 *.sln
 *.vcxproj
 *.vcxproj.filters
+
+# Log file
+log.txt
