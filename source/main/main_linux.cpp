@@ -12,6 +12,8 @@
 
 #include "../log/logger.hpp"
 
+#include "../object/world_single.hpp"
+
 #include <cstdio>
 
 int main(int argc, char** argv) {
@@ -19,6 +21,11 @@ int main(int argc, char** argv) {
   (void)argc; (void)argv;
 
   nh::logger_t* logger = new nh::logger_t("log.txt");
+
+  nh::world_single_t* world = new nh::world_single_t();
+  nh::object_t* object = new nh::object_t();
+
+  world->objects.push_back(object);
 
   nh::filesystem_t* filesystem = new nh::filesystem_t();
   nh::mount_nar_t* mount_test = new nh::mount_nar_t("test.nar");
@@ -50,11 +57,15 @@ int main(int argc, char** argv) {
   nh::model_t* model = model_factory->load_model<nh::mesh_gl_t>(reader);
 
   while (true) {
+    world->update(1.5);
+    world->draw();
     renderer->frame_start();
+
     nh::render_queue_item_t item;
     item.model = model;
     item.shader = shader;
     renderer->add_to_render_queue(item);
+
     renderer->render();
   }
 
