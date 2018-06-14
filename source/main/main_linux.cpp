@@ -6,7 +6,6 @@
 #include "../renderer/renderer_glfw_gl.hpp"
 
 #include "../model/mesh_gl.hpp"
-#include "../model/model_factory.hpp"
 
 #include "../shader/shader_gl.hpp"
 

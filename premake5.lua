@@ -28,7 +28,6 @@ project "nihonium"
     "source/filesystem/mount_nar.cpp",
     "source/filesystem/mount_directory.cpp",
     "source/model/model.cpp",
-    "source/model/model_factory.cpp",
     "source/model/mesh_base.cpp",
     "source/shader/shader_base.cpp",
     "source/log/logger.cpp",
