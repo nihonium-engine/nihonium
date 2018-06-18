@@ -31,5 +31,6 @@ file_base_t* filesystem_t::open_file(std::string path) {
 
 }
 
+filesystem_t* filesystem;
 
 }

@@ -18,8 +18,9 @@ class filesystem_t {
   private:
   std::map<std::string, mount_base_t*> mounts;
 
-
 };
+
+extern filesystem_t* filesystem;
 
 }
 
