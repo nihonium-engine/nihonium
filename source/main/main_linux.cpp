@@ -20,36 +20,21 @@ int main(int argc, char** argv) {
   (void)argc; (void)argv;
 
   nh::logger_t* logger = new nh::logger_t("log.txt");
-
-  nh::world_single_t* world = new nh::world_single_t();
-  nh::object_t* object = new nh::object_t();
-
-  world->objects.push_back(object);
-
+  nh::world_base_t* world = new nh::world_single_t();
   nh::filesystem_t* filesystem = new nh::filesystem_t();
-  nh::mount_nar_t* mount_test = new nh::mount_nar_t("test.nar");
-
-  filesystem->add_mount("test", mount_test);
-  
-  nh::file_base_t* file = filesystem->open_file("test:LICENCE.txt");
-  char* x = new char[16];
-  x[15] = '\0';
-  file->read(15, (uint8_t*)x);
-  printf("Test: %s\n", x);
+  nh::renderer_glfw_gl_t* renderer = new nh::renderer_glfw_gl_t();
+  nh::model_factory_t* model_factory = new nh::model_factory_t();
+  nh::shader_factory_t* shader_factory = new nh::shader_factory_t(logger);
 
   nh::mount_directory_t* mount_main = new nh::mount_directory_t("./");
   filesystem->add_mount("main", mount_main);
 
-  nh::renderer_glfw_gl_t* renderer = new nh::renderer_glfw_gl_t();
-
-  nh::model_factory_t* model_factory = new nh::model_factory_t();
+  logger->log_info("Mounted main mount.");
 
   nh::file_base_t* reader = filesystem->open_file("main:test.nmdl");
 
   nh::file_base_t* vert_reader = filesystem->open_file("main:vert.vert");
   nh::file_base_t* frag_reader = filesystem->open_file("main:frag.frag");
-
-  nh::shader_factory_t* shader_factory = new nh::shader_factory_t(logger);
 
   nh::shader_base_t* shader = shader_factory->shader_create<nh::shader_gl_t>(vert_reader, frag_reader);
 
