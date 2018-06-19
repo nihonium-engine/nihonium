@@ -21,20 +21,20 @@ int main(int argc, char** argv) {
 
   nh::global_logger = new nh::logger_t("log.txt");
   nh::world_base_t* world = new nh::world_single_t();
-  nh::filesystem = new nh::filesystem_t();
+  nh::global_filesystem = new nh::filesystem_t();
   nh::renderer_glfw_gl_t* renderer = new nh::renderer_glfw_gl_t();
   nh::model_factory_t* model_factory = new nh::model_factory_t();
   nh::shader_factory_t* shader_factory = new nh::shader_factory_t();
 
   nh::mount_directory_t* mount_main = new nh::mount_directory_t("./");
-  nh::filesystem->add_mount("main", mount_main);
+  nh::global_filesystem->add_mount("main", mount_main);
 
   nh::global_logger->log_info("Mounted main mount.");
 
-  nh::file_base_t* reader = nh::filesystem->open_file("main:test.nmdl");
+  nh::file_base_t* reader = nh::global_filesystem->open_file("main:test.nmdl");
 
-  nh::file_base_t* vert_reader = nh::filesystem->open_file("main:vert.vert");
-  nh::file_base_t* frag_reader = nh::filesystem->open_file("main:frag.frag");
+  nh::file_base_t* vert_reader = nh::global_filesystem->open_file("main:vert.vert");
+  nh::file_base_t* frag_reader = nh::global_filesystem->open_file("main:frag.frag");
 
   nh::shader_base_t* shader = shader_factory->shader_create<nh::shader_gl_t>(vert_reader, frag_reader);
 

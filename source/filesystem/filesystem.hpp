@@ -20,7 +20,7 @@ class filesystem_t {
 
 };
 
-extern filesystem_t* filesystem;
+extern filesystem_t* global_filesystem;
 
 }
 
