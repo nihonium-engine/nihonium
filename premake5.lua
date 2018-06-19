@@ -22,6 +22,7 @@ project "nihonium"
   files {
     "external/hmm/HandmadeMath.c",
     "external/stb_image/stb_image.c",
+    "external/duktape/duktape.c",
     "source/renderer/renderer_base.cpp",
     "source/filesystem/filesystem.cpp",
     "source/filesystem/mount_base.cpp",

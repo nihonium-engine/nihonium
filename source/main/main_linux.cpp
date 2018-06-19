@@ -40,6 +40,11 @@ int main(int argc, char** argv) {
 
   nh::model_t* model = model_factory->load_model<nh::mesh_gl_t>(reader);
 
+  nh::object_t* object = new nh::object_t();
+  object->add_script("main:test.js");
+
+  dynamic_cast<nh::world_single_t*>(world)->objects.push_back(object);
+
   while (true) {
     world->update(1.5);
     world->draw();
