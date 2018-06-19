@@ -19,17 +19,17 @@ int main(int argc, char** argv) {
 
   (void)argc; (void)argv;
 
-  nh::logger_t* logger = new nh::logger_t("log.txt");
+  nh::global_logger = new nh::logger_t("log.txt");
   nh::world_base_t* world = new nh::world_single_t();
   nh::filesystem = new nh::filesystem_t();
   nh::renderer_glfw_gl_t* renderer = new nh::renderer_glfw_gl_t();
   nh::model_factory_t* model_factory = new nh::model_factory_t();
-  nh::shader_factory_t* shader_factory = new nh::shader_factory_t(logger);
+  nh::shader_factory_t* shader_factory = new nh::shader_factory_t();
 
   nh::mount_directory_t* mount_main = new nh::mount_directory_t("./");
   nh::filesystem->add_mount("main", mount_main);
 
-  logger->log_info("Mounted main mount.");
+  nh::global_logger->log_info("Mounted main mount.");
 
   nh::file_base_t* reader = nh::filesystem->open_file("main:test.nmdl");
 

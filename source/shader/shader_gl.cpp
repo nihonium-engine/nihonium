@@ -2,7 +2,7 @@
 
 namespace nh {
 
-void shader_gl_t::initialise(logger_t* logger) {
+void shader_gl_t::initialise() {
 
   GLint success;
 
@@ -16,7 +16,7 @@ void shader_gl_t::initialise(logger_t* logger) {
     glGetShaderiv(vert_shader, GL_INFO_LOG_LENGTH, &length);
     char* message = new char[length];
     glGetShaderInfoLog(vert_shader, length, nullptr, message);
-    logger->log_error("Error compiling OpenGL vertex shader: %s", message);
+    global_logger->log_error("Error compiling OpenGL vertex shader: %s", message);
     delete[] message;
   }
 
@@ -30,7 +30,7 @@ void shader_gl_t::initialise(logger_t* logger) {
     glGetShaderiv(frag_shader, GL_INFO_LOG_LENGTH, &length);
     char* message = new char[length];
     glGetShaderInfoLog(frag_shader, length, nullptr, message);
-    logger->log_error("Error compiling OpenGL fragment shader: %s", message);
+    global_logger->log_error("Error compiling OpenGL fragment shader: %s", message);
     delete[] message;
   }
 
@@ -45,7 +45,7 @@ void shader_gl_t::initialise(logger_t* logger) {
     glGetProgramiv(this->program, GL_INFO_LOG_LENGTH, &length);
     char* message = new char[length];
     glGetProgramInfoLog(this->program, length, nullptr, message);
-    logger->log_error("Error linking OpenGL shader program: %s", message);
+    global_logger->log_error("Error linking OpenGL shader program: %s", message);
     delete[] message;
   }
 

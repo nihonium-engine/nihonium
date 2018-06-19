@@ -66,4 +66,6 @@ logger_t::logger_t(std::string path) {
   this->log_file = fopen(path.c_str(), "w");
 }
 
+logger_t* global_logger;
+
 }

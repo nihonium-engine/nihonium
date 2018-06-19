@@ -21,6 +21,8 @@ class logger_t {
   FILE* log_file;
 };
 
+extern logger_t* global_logger;
+
 }
 
 #endif
