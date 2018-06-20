@@ -25,4 +25,6 @@ shader_base_t::~shader_base_t() {
   delete frag_source;
 }
 
+shader_factory_base_t* global_shader_factory;
+
 }

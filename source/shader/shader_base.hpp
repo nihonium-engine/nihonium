@@ -22,11 +22,16 @@ class shader_base_t {
 
 };
 
-class shader_factory_t {
+class shader_factory_base_t {
+  public:
+  virtual shader_base_t* shader_create(file_base_t* vert_reader, file_base_t* frag_reader) = 0;
+};
+
+template <typename T> class shader_factory_t : public shader_factory_base_t {
 
   public:
 
-  template <typename T> shader_base_t* shader_create(file_base_t* vert_reader, file_base_t* frag_reader) {
+  shader_base_t* shader_create(file_base_t* vert_reader, file_base_t* frag_reader) {
     shader_base_t* shader = new T(vert_reader, frag_reader);
     shader->initialise();
     return shader;
@@ -35,6 +40,8 @@ class shader_factory_t {
   logger_t* logger;
 
 };
+
+extern shader_factory_base_t* global_shader_factory;
 
 }
 
