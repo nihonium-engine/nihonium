@@ -1,1 +1,1 @@
-print("hello")
+log.log_info("hello")

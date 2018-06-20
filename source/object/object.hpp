@@ -9,6 +9,9 @@
 #include "../../external/duktape/duktape.h"
 
 #include "../filesystem/filesystem.hpp"
+#include "../log/logger.hpp"
+
+#include "binding_log.hpp"
 
 namespace nh {
 

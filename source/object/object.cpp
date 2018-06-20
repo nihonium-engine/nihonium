@@ -12,14 +12,14 @@ void object_t::draw() {
 
 }
 
-static duk_ret_t test_print(duk_context* ctx) {
-  printf("%s\n", duk_to_string(ctx, 0));
-  return 0;
+static void handle_fatal_error(void* userdata, const char* msg) {
+  (void)userdata;
+  global_logger->log_error("Script Error: %s", msg);
 }
 
 void object_t::add_script(std::string file_name) {
 
-  file_base_t* file = filesystem->open_file(file_name);
+  file_base_t* file = global_filesystem->open_file(file_name);
 
   file->seek_end(0);
   size_t file_size = file->tell();
@@ -31,12 +31,18 @@ void object_t::add_script(std::string file_name) {
 
   file->close();
 
-  duk_context* ctx = duk_create_heap_default();
+  duk_context* ctx = duk_create_heap(
+    nullptr,
+    nullptr,
+    nullptr,
+    nullptr,
+    handle_fatal_error
+  );
 
-  duk_push_c_function(ctx, test_print, 1);
-  duk_put_global_string(ctx, "print");
+  duk_bind_log(ctx);
 
   duk_push_string(ctx, script_source);
+  duk_push_string(ctx, file_name.c_str());
   duk_compile(ctx, 0);
   duk_call(ctx, 0);
 
