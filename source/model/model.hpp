@@ -18,11 +18,16 @@ class model_t {
 
 };
 
-class model_factory_t {
+class model_factory_base_t {
+  public:
+  virtual model_t* load_model(file_base_t* reader) = 0;
+};
+
+template <typename T> class model_factory_t : public model_factory_base_t {
 
   public:
 
-  template <typename T> model_t* load_model(file_base_t* reader) {
+  model_t* load_model(file_base_t* reader) {
     uint8_t header[4];
     reader->read(4, header);
   

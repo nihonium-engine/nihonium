@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
   nh::world_base_t* world = new nh::world_single_t();
   nh::global_filesystem = new nh::filesystem_t();
   nh::renderer_glfw_gl_t* renderer = new nh::renderer_glfw_gl_t();
-  nh::model_factory_t* model_factory = new nh::model_factory_t();
+  nh::model_factory_base_t* model_factory = new nh::model_factory_t<nh::mesh_gl_t>();
   nh::shader_factory_t* shader_factory = new nh::shader_factory_t();
 
   nh::mount_directory_t* mount_main = new nh::mount_directory_t("./");
@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
 
   nh::shader_base_t* shader = shader_factory->shader_create<nh::shader_gl_t>(vert_reader, frag_reader);
 
-  nh::model_t* model = model_factory->load_model<nh::mesh_gl_t>(reader);
+  nh::model_t* model = model_factory->load_model(reader);
 
   nh::object_t* object = new nh::object_t();
   object->add_script("main:test.js");
