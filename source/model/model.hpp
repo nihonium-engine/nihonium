@@ -88,6 +88,7 @@ template <typename T> class model_factory_t : public model_factory_base_t {
 
 };
 
+extern model_factory_base_t* global_model_factory;
 
 }
 
