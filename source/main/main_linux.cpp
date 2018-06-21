@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
   nh::global_logger = new nh::logger_t("log.txt");
   nh::world_base_t* world = new nh::world_single_t();
   nh::global_filesystem = new nh::filesystem_t();
-  nh::renderer_glfw_gl_t* renderer = new nh::renderer_glfw_gl_t();
+  nh::global_renderer = new nh::renderer_glfw_gl_t();
   nh::global_model_factory= new nh::model_factory_t<nh::mesh_gl_t>();
   nh::global_shader_factory = new nh::shader_factory_t<nh::shader_gl_t>();
 
@@ -48,14 +48,14 @@ int main(int argc, char** argv) {
   while (true) {
     world->update(1.5);
     world->draw();
-    renderer->frame_start();
+    nh::global_renderer->frame_start();
 
     nh::render_queue_item_t item;
     item.model = model;
     item.shader = shader;
-    renderer->add_to_render_queue(item);
+    nh::global_renderer->add_to_render_queue(item);
 
-    renderer->render();
+    nh::global_renderer->render();
   }
 
   return 0;

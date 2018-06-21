@@ -32,6 +32,8 @@ class renderer_base_t {
     std::vector<render_queue_item_t> render_queue;
 
 };
+
+extern renderer_base_t* global_renderer;
   
 }
 
