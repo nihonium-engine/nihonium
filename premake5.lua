@@ -35,6 +35,8 @@ project "nihonium"
     "source/object/object.cpp",
     "source/object/binding_log.cpp",
     "source/object/binding_filesystem.cpp",
+    "source/object/binding_model.cpp",
+    "source/object/binding_shader.cpp",
     "source/object/world_single.cpp"
   }
 

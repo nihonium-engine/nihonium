@@ -57,6 +57,8 @@ void object_t::add_script(std::string file_name) {
 
   duk_bind_log(ctx);
   duk_bind_filesystem(ctx);
+  duk_bind_model(ctx);
+  duk_bind_shader(ctx);
 
   duk_push_string(ctx, script_source);
   duk_push_string(ctx, file_name.c_str());

@@ -13,6 +13,8 @@
 
 #include "binding_filesystem.hpp"
 #include "binding_log.hpp"
+#include "binding_model.hpp"
+#include "binding_shader.hpp"
 
 namespace nh {
 
