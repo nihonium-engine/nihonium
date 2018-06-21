@@ -7,7 +7,7 @@ var my_shader = shader.load(vert_source, frag_source)
 
 function update(delta_time) {
 
-  log.log_info(delta_time)
+  render.render(my_model, my_shader)
 
 }
 

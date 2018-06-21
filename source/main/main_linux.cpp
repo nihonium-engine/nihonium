@@ -31,15 +31,6 @@ int main(int argc, char** argv) {
 
   nh::global_logger->log_info("Mounted main mount.");
 
-  nh::file_base_t* reader = nh::global_filesystem->open_file("main:test.nmdl");
-
-  nh::file_base_t* vert_reader = nh::global_filesystem->open_file("main:vert.vert");
-  nh::file_base_t* frag_reader = nh::global_filesystem->open_file("main:frag.frag");
-
-  nh::shader_base_t* shader = nh::global_shader_factory->shader_create(vert_reader, frag_reader);
-
-  nh::model_t* model = nh::global_model_factory->load_model(reader);
-
   nh::object_t* object = new nh::object_t();
   object->add_script("main:test.js");
 
@@ -49,11 +40,6 @@ int main(int argc, char** argv) {
     world->update(1.5);
     world->draw();
     nh::global_renderer->frame_start();
-
-    nh::render_queue_item_t item;
-    item.model = model;
-    item.shader = shader;
-    nh::global_renderer->add_to_render_queue(item);
 
     nh::global_renderer->render();
   }
