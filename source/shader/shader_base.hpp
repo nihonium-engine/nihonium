@@ -10,7 +10,7 @@ class shader_base_t {
 
   public:
   shader_base_t(file_base_t* vert_reader, file_base_t* frag_reader);
-  ~shader_base_t();
+  virtual ~shader_base_t();
 
   virtual void initialise() = 0;
 
