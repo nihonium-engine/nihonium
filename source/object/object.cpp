@@ -4,11 +4,27 @@ namespace nh {
 
 void object_t::update(double delta_time) {
 
-  (void)delta_time;
+  for (auto i = this->scripts.begin(); i != this->scripts.end(); i++) {
+
+    duk_get_global_string(i->second, "update");
+    duk_push_number(i->second, delta_time);
+    duk_call(i->second, 1);
+    duk_pop(i->second);
+
+  }
+
 
 }
 
 void object_t::draw() {
+
+  for (auto i = this->scripts.begin(); i != this->scripts.end(); i++) {
+
+    duk_get_global_string(i->second, "draw");
+    duk_call(i->second, 0);
+    duk_pop(i->second);
+
+  }
 
 }
 

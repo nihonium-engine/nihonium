@@ -1,5 +1,13 @@
-var file = filesystem.open("main:vert.vert")
-log.log_info(file.ptr)
+var model = filesystem.open("main:test.nmdl")
+var shader_vert = filesystem.open("main:vert.vert")
+var shader_frag = filesystem.open("main:frag.frag")
 
-filesystem.close(file)
-log.log_info(file.ptr)
+function update(delta_time) {
+
+  log.log_info(delta_time)
+
+}
+
+function draw() {
+
+}
