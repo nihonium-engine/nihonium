@@ -9,6 +9,8 @@ namespace nh {
 class file_base_t {
 
   public:
+  virtual ~file_base_t() {};
+
   virtual void seek_current(int offset) = 0;
   virtual void seek_start(int offset) = 0;
   virtual void seek_end(int offset) = 0;

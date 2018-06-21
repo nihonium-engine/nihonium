@@ -11,6 +11,7 @@
 #include "../filesystem/filesystem.hpp"
 #include "../log/logger.hpp"
 
+#include "binding_filesystem.hpp"
 #include "binding_log.hpp"
 
 namespace nh {

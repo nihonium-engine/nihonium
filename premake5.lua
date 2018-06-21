@@ -34,6 +34,7 @@ project "nihonium"
     "source/log/logger.cpp",
     "source/object/object.cpp",
     "source/object/binding_log.cpp",
+    "source/object/binding_filesystem.cpp",
     "source/object/world_single.cpp"
   }
 
