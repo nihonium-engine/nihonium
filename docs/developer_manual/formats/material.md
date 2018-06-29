@@ -49,7 +49,6 @@ Now, to explain:
 * This top-level object must contain four keys: `version`, `vertex_shader`, `fragment_shader` and `parameters`.
 * The value of `version` must be a number and corresponds to the version of this specification. See *This version* at the top for the current version. 
 * The values of `vertex_shader` and `fragment_shader` must be strings. These strings represent paths to the vertex and fragment shaders to be used, respectively.
-
 * The value of `parameters` must be an array.
 * Each value in `parameters` represents a variable which is passed on to the shader and must be an object.
 * Each value in `parameters` must have a `name` and `type` parameter.
