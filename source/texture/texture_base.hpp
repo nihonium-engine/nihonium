@@ -6,14 +6,14 @@
 
 #include "../../external/stb_image/stb_image.h"
 
-#include "../file_reader/file_reader_base.hpp"
+#include "../filesystem/mount_base.hpp"
 
 namespace nh {
 
 class texture_base_t {
 
   public:
-  texture_base_t(file_reader_base_t* reader);
+  texture_base_t(file_base_t* reader);
 
   virtual void initialise() = 0;
   
@@ -22,15 +22,22 @@ class texture_base_t {
 
 };
 
-class texture_factory_t {
+class texture_factory_base_t {
+  public:
+  texture_base_t* load_texture(file_base_t* reader);
+};
 
-  template <typename T> texture_base_t* load_texture(file_reader_base_t* reader) {
+template <typename T> class texture_factory_t : public texture_factory_base_t {
+
+  texture_base_t* load_texture(file_base_t* reader) {
     texture_base_t* texture = new T(reader);
     texture->initialise();
     return texture;
   }
 
 };
+
+extern texture_factory_base_t* global_texture_factory;
 
 }
 
