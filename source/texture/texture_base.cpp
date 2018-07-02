@@ -21,7 +21,7 @@ texture_base_t::texture_base_t(file_base_t* reader) {
 
   stbi_io_callbacks callbacks = {read, skip, eof};
 
-  stbi_load_from_callbacks(&callbacks, reader, &this->width, &this->height, &this->channels, 4);
+  this->data = stbi_load_from_callbacks(&callbacks, reader, &this->width, &this->height, &this->channels, 4);
 
 }
 

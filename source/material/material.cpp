@@ -136,14 +136,14 @@ material_t* load_material(file_base_t* file) {
       value.single = new float[param["value"].Size()];
       value.num_single_values = param["value"].Size();
 
-      for (rapidjson::SizeType j = 0; j < params["value"].Size(); j++) {
-        value.single[j] = params["value"][j].GetFloat();
+      for (rapidjson::SizeType j = 0; j < param["value"].Size(); j++) {
+        value.single[j] = param["value"][j].GetFloat();
       }
     } else {
       value.is_map = true;
       value.single = nullptr;
       value.num_single_values = 0;
-      file_base_t* file = global_filesystem->open_file(params["path"].GetString());
+      file_base_t* file = global_filesystem->open_file(param["path"].GetString());
       value.map = global_texture_factory->load_texture(file);
     }
 

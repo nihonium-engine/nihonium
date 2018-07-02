@@ -1,0 +1,37 @@
+{
+  "vertex_shader": "main:vert.vert",
+  "fragment_shader": "main:frag.frag",
+  "parameters": [
+    {
+      "name": "albedo",
+      "type": "map",
+      "components": 3,
+      "path": "main:test_textures/albedo.png"
+    },
+    {
+      "name": "normal",
+      "type": "map",
+      "components": 3,
+      "path": "main:test_textures/normal.png"
+    },
+    {
+      "name": "metallic",
+      "type": "single",
+      "value": [
+        0
+      ]
+    },
+    {
+      "name": "roughness",
+      "type": "map",
+      "components": 1,
+      "path": "main:test_textures/roughness.png"
+    },
+    {
+      "name": "ao",
+      "type": "map",
+      "components": 1,
+      "path": "main:test_textures/ao.png"
+    }
+  ]
+}

@@ -23,22 +23,25 @@ project "nihonium"
     "external/hmm/HandmadeMath.c",
     "external/stb_image/stb_image.c",
     "external/duktape/duktape.c",
-    "source/renderer/renderer_base.cpp",
     "source/filesystem/filesystem.cpp",
     "source/filesystem/mount_base.cpp",
     "source/filesystem/mount_nar.cpp",
     "source/filesystem/mount_directory.cpp",
-    "source/model/model.cpp",
-    "source/model/mesh_base.cpp",
-    "source/shader/shader_base.cpp",
     "source/log/logger.cpp",
+    "source/material/material.cpp",
+    "source/model/mesh_base.cpp",
+    "source/model/model.cpp",
     "source/object/object.cpp",
     "source/object/binding_log.cpp",
     "source/object/binding_filesystem.cpp",
+    "source/object/binding_material.cpp",
     "source/object/binding_model.cpp",
     "source/object/binding_shader.cpp",
     "source/object/binding_renderer.cpp",
-    "source/object/world_single.cpp"
+    "source/object/world_single.cpp",
+    "source/renderer/renderer_base.cpp",
+    "source/shader/shader_base.cpp",
+    "source/texture/texture_base.cpp"
   }
 
   filter "configurations:debug"
@@ -56,7 +59,8 @@ project "nihonium"
       "source/main/main_windows.cpp",
       "source/renderer/renderer_glfw_gl.cpp",
       "source/model/mesh_gl.cpp",
-      "source/shader/shader_gl.cpp"
+      "source/shader/shader_gl.cpp",
+      "source/texture/texture_gl.cpp"
     }
     
   filter "platforms:linux"
@@ -67,7 +71,8 @@ project "nihonium"
       "source/main/main_linux.cpp",
       "source/renderer/renderer_glfw_gl.cpp",
       "source/model/mesh_gl.cpp",
-      "source/shader/shader_gl.cpp"
+      "source/shader/shader_gl.cpp",
+      "source/texture/texture_gl.cpp"
     }
 
 project "glfw"

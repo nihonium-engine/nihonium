@@ -24,7 +24,7 @@ class texture_base_t {
 
 class texture_factory_base_t {
   public:
-  texture_base_t* load_texture(file_base_t* reader);
+  virtual texture_base_t* load_texture(file_base_t* reader) = 0;
 };
 
 template <typename T> class texture_factory_t : public texture_factory_base_t {
