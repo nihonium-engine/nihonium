@@ -1,16 +1,13 @@
 var model_source = filesystem.open("main:test.nmdl")
-var vert_source = filesystem.open("main:vert.vert")
-var frag_source = filesystem.open("main:frag.frag")
 var mat_source = filesystem.open("main:test_material.json")
 
 var my_model = model.load(model_source)
-var my_shader = shader.load(vert_source, frag_source)
 
 var my_material = material.load(mat_source)
 
 function update(delta_time) {
 
-  render.render(my_model, my_shader)
+  render.render(my_model, my_material)
 
 }
 

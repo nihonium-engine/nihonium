@@ -8,11 +8,11 @@ static duk_ret_t bind_render(duk_context* ctx) {
   model_t* model = (model_t*)duk_get_pointer(ctx, -1);
 
   duk_get_prop_string(ctx, 1, "ptr");
-  shader_base_t* shader = (shader_base_t*)duk_get_pointer(ctx, -1);
+  material_t* material = (material_t*)duk_get_pointer(ctx, -1);
 
   render_queue_item_t item;
   item.model = model;
-  item.shader = shader;
+  item.material = material;
   global_renderer->add_to_render_queue(item);
 
   return 0;

@@ -41,10 +41,12 @@ void renderer_glfw_gl_t::frame_start() {
 void renderer_glfw_gl_t::render() {
   for (auto i = this->render_queue.begin(); i != this->render_queue.end(); i++) {
 
-    shader_gl_t* shader = dynamic_cast<shader_gl_t*>(i->shader);
+    shader_base_t* base_shader = i->material->shader;
+
+    shader_gl_t* shader = dynamic_cast<shader_gl_t*>(base_shader);
     if (!shader) {
-      // TODO: Log error.
-      printf("Shader wasn't an OpenGL shader.\n");
+      global_logger->log_error("Shader wasn't an OpenGL shader.\n");
+      continue;
     }
 
     glUseProgram(shader->program);
@@ -61,8 +63,8 @@ void renderer_glfw_gl_t::render() {
     for (auto j = i->model->meshes.begin(); j != i->model->meshes.end(); j++) {
       mesh_gl_t* mesh = dynamic_cast<mesh_gl_t*>(*j);
       if (!mesh) {
-        // TODO: Log error.
-        printf("Mesh wasn't an OpenGL mesh.\n");
+        global_logger->log_error("Mesh wasn't an OpenGL mesh.\n");
+        continue;
       }
 
       glBindVertexArray(mesh->vao);
