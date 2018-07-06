@@ -61,7 +61,7 @@ void renderer_glfw_gl_t::render() {
     glUniformMatrix4fv(projection_location, 1, GL_FALSE, (const GLfloat*)&projection_matrix);
 
     for (auto j = i->model->meshes.begin(); j != i->model->meshes.end(); j++) {
-      mesh_gl_t* mesh = dynamic_cast<mesh_gl_t*>(*j);
+      mesh_gl_t* mesh = dynamic_cast<mesh_gl_t*>(j->second);
       if (!mesh) {
         global_logger->log_error("Mesh wasn't an OpenGL mesh.\n");
         continue;
