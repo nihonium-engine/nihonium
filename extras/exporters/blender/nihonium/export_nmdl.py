@@ -86,17 +86,6 @@ based on it.
 def material_name_to_path(name):
     return "mat_%s.json" % name
 
-"""
-This function takes a vertex index and finds the first UV loop using
-that vertex.
-It's not a particularly efficient function since it needs to brute
-force the result.
-"""
-def vertex_to_uv_loop(mesh, vertex):
-    for l in mesh.loops:
-        if l.vertex_index == vertex:
-            return l
-
 def write(context,
           file_name,
           export_material=True,
@@ -117,7 +106,9 @@ def write(context,
         # Write header.
         f.write(bytes([0x4E, 0x4D, 0x44, 0x4C])) # Magic
         f.write(pack("<L", 0x00000001)) # Version
-        f.write(pack("<L", len(objects))) # Number of meshes
+        f.write(pack("<L", 0)) # Number of meshes (placeholder)
+
+        num_meshes = 0
 
         for v in objects:
             if apply_modifiers or v.type != "MESH":
@@ -137,6 +128,8 @@ def write(context,
                 is_temp_mesh = False
 
             if mesh:
+                num_meshes += 1
+
                 mesh_triangulate(mesh)
 
                 material = None
@@ -209,3 +202,6 @@ def write(context,
                 # Indices
                 for index in indices:
                     f.write(pack("<H", index))
+
+        f.seek(8)
+        f.write(pack("<L", num_meshes))
