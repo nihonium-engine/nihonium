@@ -8,6 +8,7 @@
 
 #include "../model/mesh_gl.hpp"
 #include "../shader/shader_gl.hpp"
+#include "../texture/texture_gl.hpp"
 
 #include "renderer_base.hpp"
 
