@@ -123,7 +123,7 @@ material_t* load_material(file_base_t* file) {
   file_base_t* vert_shader = global_filesystem->open_file(doc["vertex_shader"].GetString());
   file_base_t* frag_shader = global_filesystem->open_file(doc["fragment_shader"].GetString());
 
-  material->shader = global_shader_factory->shader_create(vert_shader, frag_shader);
+  material->shader = global_shader_factory->load_shader(vert_shader, frag_shader);
 
   for (rapidjson::SizeType i = 0; i < params.Size(); i++) {
 

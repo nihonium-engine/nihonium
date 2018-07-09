@@ -24,7 +24,7 @@ static duk_ret_t bind_load_shader(duk_context* ctx) {
   duk_get_prop_string(ctx, 1, "ptr");
   file_base_t* frag_file = (file_base_t*)duk_get_pointer(ctx, -1);
 
-  shader_base_t* shader = global_shader_factory->shader_create(vert_file, frag_file);
+  shader_base_t* shader = global_shader_factory->load_shader(vert_file, frag_file);
 
   duk_idx_t object = duk_push_object(ctx);
 

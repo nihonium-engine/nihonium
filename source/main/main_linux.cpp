@@ -1,21 +1,15 @@
 
+#include <stdio.h>
+
 #include "../filesystem/filesystem.hpp"
 #include "../filesystem/mount_directory.hpp"
 #include "../filesystem/mount_nar.hpp"
-
-#include "../renderer/renderer_glfw_gl.hpp"
-
-#include "../model/mesh_gl.hpp"
-
-#include "../shader/shader_gl.hpp"
-
-#include "../texture/texture_gl.hpp"
-
 #include "../log/logger.hpp"
-
+#include "../model/mesh_gl.hpp"
 #include "../object/world_single.hpp"
-
-#include <cstdio>
+#include "../renderer/renderer_glfw_gl.hpp"
+#include "../shader/shader_gl.hpp"
+#include "../texture/texture_gl.hpp"
 
 int main(int argc, char** argv) {
 
