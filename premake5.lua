@@ -19,6 +19,8 @@ project "nihonium"
 
   targetdir "bin/%{cfg.buildcfg}"
 
+  warnings "Extra"
+
   files {
     "external/hmm/HandmadeMath.c",
     "external/stb_image/stb_image.c",

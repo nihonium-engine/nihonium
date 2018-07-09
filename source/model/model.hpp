@@ -86,7 +86,7 @@ template <typename T> class model_factory_t : public model_factory_base_t {
       uint16_t* faces = new uint16_t[num_faces * 3];
       reader->read(num_faces * 3 * sizeof(uint16_t), (uint8_t*)faces);
 
-      for (int i = 0; i < num_vertices * 8; i += 8) {
+      for (uint32_t i = 0; i < num_vertices * 8; i += 8) {
         mesh_vertex_t vertex = {
           mesh_data[i + 0],
           mesh_data[i + 1],
@@ -102,7 +102,7 @@ template <typename T> class model_factory_t : public model_factory_base_t {
         mesh->vertices.push_back(vertex);
       }
 
-      for (int i = 0; i < num_faces * 3; i++) {
+      for (uint32_t i = 0; i < num_faces * 3; i++) {
         mesh->indices.push_back(faces[i]);
       }
 

@@ -1,3 +1,8 @@
+// Note: this file has been modified slightly for Nihonium, mainly to disable compiler warnings.
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+#endif
 /*
   HandmadeMath.h v1.5.0
   
@@ -2452,3 +2457,7 @@ hmm_quaternion HMM_QuaternionFromAxisAngle(hmm_vec3 Axis, float AngleOfRotation)
 }
 
 #endif /* HANDMADE_MATH_IMPLEMENTATION */
+
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
