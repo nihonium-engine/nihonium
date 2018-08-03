@@ -52,7 +52,7 @@ void renderer_glfw_gl_t::render() {
 
     glUseProgram(shader->program);
 
-    hmm_mat4 model_matrix = HMM_MultiplyMat4(HMM_Translate(HMM_Vec3(0.0f, 0.0f, -5.0f)), HMM_Rotate(45, HMM_Vec3(0.5f, 0.5f, 0.0f)));
+    hmm_mat4 model_matrix = HMM_MultiplyMat4(HMM_MultiplyMat4(HMM_Translate(i->position), HMM_QuaternionToMat4(i->rotation)), HMM_Scale(i->scale));
     hmm_mat4 projection_matrix = HMM_Perspective(45.0f, 800.0f / 600.0f, 0.01f, 1000.0f);
   
     GLint model_location = glGetUniformLocation(shader->program, "nh_model");
