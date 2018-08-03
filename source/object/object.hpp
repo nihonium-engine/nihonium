@@ -17,6 +17,7 @@
 #include "binding_model.hpp"
 #include "binding_renderer.hpp"
 #include "binding_shader.hpp"
+#include "binding_maths.hpp"
 
 namespace nh {
 
