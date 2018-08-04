@@ -24,7 +24,6 @@ class renderer_glfw_gl_t : public renderer_base_t {
 
   void render();
 
-  private:
   GLFWwindow* window;
 
 };

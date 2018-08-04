@@ -18,6 +18,7 @@
 #include "binding_renderer.hpp"
 #include "binding_shader.hpp"
 #include "binding_maths.hpp"
+#include "binding_input.hpp"
 
 namespace nh {
 

@@ -4,6 +4,7 @@
 #include "../filesystem/filesystem.hpp"
 #include "../filesystem/mount_directory.hpp"
 #include "../filesystem/mount_nar.hpp"
+#include "../input/input_glfw.hpp"
 #include "../log/logger.hpp"
 #include "../model/mesh_gl.hpp"
 #include "../object/world_single.hpp"
@@ -19,6 +20,7 @@ int main(int argc, char** argv) {
   nh::world_base_t* world = new nh::world_single_t();
   nh::global_filesystem = new nh::filesystem_t();
   nh::global_renderer = new nh::renderer_glfw_gl_t();
+  nh::global_input = new nh::input_glfw_t(dynamic_cast<nh::renderer_glfw_gl_t*>(nh::global_renderer));
   nh::global_model_factory = new nh::model_factory_t<nh::mesh_gl_t>();
   nh::global_shader_factory = new nh::shader_factory_t<nh::shader_gl_t>();
   nh::global_texture_factory = new nh::texture_factory_t<nh::texture_gl_t>();

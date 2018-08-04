@@ -29,6 +29,7 @@ project "nihonium"
     "source/filesystem/mount_base.cpp",
     "source/filesystem/mount_nar.cpp",
     "source/filesystem/mount_directory.cpp",
+    "source/input/input_base.cpp",
     "source/log/logger.cpp",
     "source/material/material.cpp",
     "source/model/mesh_base.cpp",
@@ -41,6 +42,7 @@ project "nihonium"
     "source/object/binding_shader.cpp",
     "source/object/binding_renderer.cpp",
     "source/object/binding_maths.cpp",
+    "source/object/binding_input.cpp",
     "source/object/world_single.cpp",
     "source/renderer/renderer_base.cpp",
     "source/shader/shader_base.cpp",
@@ -61,6 +63,7 @@ project "nihonium"
       "external/glad/glad.c",
       "source/main/main_windows.cpp",
       "source/renderer/renderer_glfw_gl.cpp",
+      "source/input/input_glfw.cpp",
       "source/model/mesh_gl.cpp",
       "source/shader/shader_gl.cpp",
       "source/texture/texture_gl.cpp"
@@ -73,6 +76,7 @@ project "nihonium"
       "external/glad/glad.c",
       "source/main/main_linux.cpp",
       "source/renderer/renderer_glfw_gl.cpp",
+      "source/input/input_glfw.cpp",
       "source/model/mesh_gl.cpp",
       "source/shader/shader_gl.cpp",
       "source/texture/texture_gl.cpp"
