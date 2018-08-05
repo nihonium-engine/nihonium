@@ -185,23 +185,20 @@ static duk_ret_t bind_quat_from_euler(duk_context* ctx) {
   float in_y = duk_to_number(ctx, 1);
   float in_z = duk_to_number(ctx, 2);
 
-  float cos_x = cos(in_x / 2);
-  float sin_x = sin(in_x / 2);
+  hmm_quaternion x_quat = HMM_QuaternionFromAxisAngle(HMM_Vec3(1, 0, 0), in_x);
+  hmm_quaternion y_quat = HMM_QuaternionFromAxisAngle(HMM_Vec3(0, 1, 0), in_y);
+  hmm_quaternion z_quat = HMM_QuaternionFromAxisAngle(HMM_Vec3(0, 0, 1), in_z);
 
-  float cos_y = cos(in_y / 2);
-  float sin_y = sin(in_y / 2);
-
-  float cos_z = cos(in_z / 2);
-  float sin_z = sin(in_z / 2);
+  hmm_quaternion out = HMM_MultiplyQuaternion(HMM_MultiplyQuaternion(x_quat, y_quat), z_quat);
 
   duk_idx_t array_index = duk_push_array(ctx);
-  duk_push_number(ctx, cos_x * cos_y * cos_z - sin_x * sin_y * cos_z);
+  duk_push_number(ctx, out.X);
   duk_put_prop_index(ctx, array_index, 0);
-  duk_push_number(ctx, sin_x * cos_y * sin_z + cos_x * sin_y * sin_z);
+  duk_push_number(ctx, out.Y);
   duk_put_prop_index(ctx, array_index, 1);
-  duk_push_number(ctx, cos_x * sin_y * cos_z - sin_x * cos_y * sin_z);
+  duk_push_number(ctx, out.Z);
   duk_put_prop_index(ctx, array_index, 2);
-  duk_push_number(ctx, cos_x * cos_y * cos_z + sin_x * sin_y * sin_z);
+  duk_push_number(ctx, out.W);
   duk_put_prop_index(ctx, array_index, 3);
 
   return 1;
@@ -223,7 +220,7 @@ static duk_ret_t bind_quat_mul(duk_context* ctx) {
   float right_y = duk_to_number(ctx, -1);
   duk_get_prop_index(ctx, 1, 2);
   float right_z = duk_to_number(ctx, -1);
-  duk_get_prop_index(ctx, 0, 3);
+  duk_get_prop_index(ctx, 1, 3);
   float right_w = duk_to_number(ctx, -1);
   duk_pop_n(ctx, 6);
 
