@@ -222,7 +222,7 @@ static duk_ret_t bind_quat_mul(duk_context* ctx) {
   float right_z = duk_to_number(ctx, -1);
   duk_get_prop_index(ctx, 1, 3);
   float right_w = duk_to_number(ctx, -1);
-  duk_pop_n(ctx, 6);
+  duk_pop_n(ctx, 8);
 
   duk_idx_t array_index = duk_push_array(ctx);
   duk_push_number(ctx, (left_x * right_w) + (left_y * right_z) - (left_z * right_y) + (left_w * right_x));
@@ -232,6 +232,32 @@ static duk_ret_t bind_quat_mul(duk_context* ctx) {
   duk_push_number(ctx, (left_x * right_y) - (left_y * right_x) + (left_z * right_w) + (left_w * right_z));
   duk_put_prop_index(ctx, array_index, 2);
   duk_push_number(ctx, (-left_x * right_x) - (left_y * right_y) - (left_z * right_z) + (left_w * right_w));
+  duk_put_prop_index(ctx, array_index, 3);
+
+  return 1;
+}
+
+static duk_ret_t bind_quat_normalise(duk_context* ctx) {
+
+  duk_get_prop_index(ctx, 0, 0);
+  float x = duk_to_number(ctx, -1);
+  duk_get_prop_index(ctx, 0, 1);
+  float y = duk_to_number(ctx, -1);
+  duk_get_prop_index(ctx, 0, 2);
+  float z = duk_to_number(ctx, -1);
+  duk_get_prop_index(ctx, 0, 3);
+  float w = duk_to_number(ctx, -1);
+
+  hmm_quaternion out = HMM_NormalizeQuaternion(HMM_Quaternion(x, y, z, w));
+
+  duk_idx_t array_index = duk_push_array(ctx);
+  duk_push_number(ctx, out.X);
+  duk_put_prop_index(ctx, array_index, 0);
+  duk_push_number(ctx, out.Y);
+  duk_put_prop_index(ctx, array_index, 1);
+  duk_push_number(ctx, out.Z);
+  duk_put_prop_index(ctx, array_index, 2);
+  duk_push_number(ctx, out.W);
   duk_put_prop_index(ctx, array_index, 3);
 
   return 1;
@@ -275,6 +301,9 @@ void duk_bind_maths(duk_context* ctx) {
 
   duk_push_c_function(ctx, bind_quat_mul, 2);
   duk_put_prop_string(ctx, quat_object, "mul");
+
+  duk_push_c_function(ctx, bind_quat_normalise, 1);
+  duk_put_prop_string(ctx, quat_object, "normalise");
 
   duk_put_global_string(ctx, "quat");
 
