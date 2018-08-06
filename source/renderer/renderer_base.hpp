@@ -5,6 +5,7 @@
 
 #include "../../external/hmm/HandmadeMath.h"
 
+#include "../camera/camera.hpp"
 #include "../material/material.hpp"
 #include "../model/model.hpp"
 
@@ -21,15 +22,15 @@ struct render_queue_item_t {
 
 class renderer_base_t {
 
-    public:
-    virtual void frame_start() = 0;
+  public:
+  virtual void frame_start() = 0;
 
-    void add_to_render_queue(render_queue_item_t item);
+  void add_to_render_queue(render_queue_item_t item);
 
-    virtual void render() = 0;
+  virtual void render() = 0;
 
-    protected:
-    std::vector<render_queue_item_t> render_queue;
+  protected:
+  std::vector<render_queue_item_t> render_queue;
 
 };
 

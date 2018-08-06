@@ -19,6 +19,7 @@
 #include "binding_shader.hpp"
 #include "binding_maths.hpp"
 #include "binding_input.hpp"
+#include "binding_camera.hpp"
 
 namespace nh {
 
